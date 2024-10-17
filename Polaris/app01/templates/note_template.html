@@ -1,0 +1,237 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+<head>
+
+    <meta charset="UTF-8">
+    <title> Polaris Note </title>
+    <link rel="stylesheet" href="{% static 'note_template.css' %}">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+    {% block head %}
+    {% endblock %}
+
+
+</head>
+<body>
+<div class="sidebar">
+    <div class="logo-details">
+        <img src="{% static 'img/polaris_logo.png' %}" alt="Logo" class="icon"
+             style="width: 2rem; border-radius: 0.3rem; margin-right: 1rem;margin-left: 0.5rem;margin-top: 0rem"/>
+        <div class="logo_name" style="white-space: nowrap; margin-left: -0.5rem;">Polaris Note</div>
+        <i class='bx bx-menu' id="btn"></i>
+    </div>
+    <ul class="nav-list">
+        <li>
+            <i class='bx bx-search'></i>
+            <input type="text" placeholder="Search...">
+            <span class="tooltip">Search</span>
+        </li>
+
+        {% block dashboard %}
+        <li style="margin-top: 1rem">
+            <a href="dashboard/{{uid}}" id="dashboard_url">
+                <i class='bx bxs-dashboard'></i>
+                <span class="links_name">Dashboard</span>
+            </a>
+            <span class="tooltip">Dashboard</span>
+        </li>
+        {% endblock %}
+        
+        {% block write_note %}
+        <li style="">
+            <a href="write_note/{{uid}}" id="write_note_url">
+                <i class='bx bx-edit-alt'></i>
+                <span class="links_name">Write Note</span>
+            </a>
+            <span class="tooltip">Write Note</span>
+        </li>
+        {% endblock %}
+
+        {% block my_space %}
+        <li style="margin-bottom: 1rem;">
+            <a href="my_space/{{uid}}" id="my_space_url">
+                <i class='bx bx-copy'></i>
+                <span class="links_name">My Space</span>
+            </a>
+            <span class="tooltip">My Space</span>
+        </li>
+        {% endblock %}
+
+        <hr>
+
+        <li style="margin-top: 1rem">
+            <a href="#">
+                <i class='bx bx-code-alt'></i>
+                <span class="links_name">Console</span>
+            </a>
+            <span class="tooltip">Console</span>
+        </li>
+
+        {% comment %} {% block data_diagram_section %}
+            <li>
+                <a href="#" id="dataDiagramLink">
+                    <i class='bx bx-sitemap'></i>
+                    <span class="links_name">数据地图</span>
+                </a>
+                <span class="tooltip">数据地图</span>
+            </li>
+        {% endblock %} {% endcomment %}
+
+        <li>
+            <a href="#">
+                <i class='bx bx-cog'></i>
+                <span class="links_name">Settings</span>
+            </a>
+            <span class="tooltip">Settings</span>
+        </li>
+
+
+        <li class="profile">
+
+            <div class="profile-details">
+                <img src="{% static 'img/chris.jpg' %}" alt="profileImg" style="width: 17%; height: auto;">
+                <div class="name_job">
+                    <div class="name">Chris</div>
+                    <div class="job">A diligent developer</div>
+                </div>
+            </div>
+            <i class='bx bx-log-out' id="log_out"></i>
+
+        </li>
+    </ul>
+
+</div>
+
+{% block main_content %}
+
+    <section class="home-section">
+        <div class="text_title"><b>PolarisNote-Developing</b></div>
+
+        {% comment %} {% block iframe_section %}
+
+            <div class="iframe-container">
+                <iframe id="myIframe" class="fullsize-iframe" scrolling="no"
+                        src=""></iframe>
+            </div>
+
+        {% endblock %} {% endcomment %}
+
+    </section>
+{% endblock %}
+
+<script>
+
+
+    let sidebar = document.querySelector(".sidebar");
+    let closeBtn = document.querySelector("#btn");
+    let searchBtn = document.querySelector(".bx-search");
+
+    closeBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("open");
+        menuBtnChange();//calling the function(optional)
+    });
+
+    searchBtn.addEventListener("click", () => { // Sidebar open when you click on the search iocn
+        sidebar.classList.toggle("open");
+        menuBtnChange(); //calling the function(optional)
+    });
+
+    // following are the code to change sidebar button(optional)
+    function menuBtnChange() {
+        var navbarStatus;
+
+        if (sidebar.classList.contains("open")) {
+            closeBtn.classList.replace("bx-menu", "bx-menu-alt-right"); //replacing the icons class
+            navbarStatus = "True"; // If sidebar is open, we want to set the status as False when we close it
+        } else {
+            closeBtn.classList.replace("bx-menu-alt-right", "bx-menu"); //replacing the icons class
+            navbarStatus = "False"; // If sidebar is closed, we want to set the status as True when we open it
+        }
+
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + value + expires + "; path=/";
+        }
+
+        setCookie("navbar_status", navbarStatus, 0.1);
+    }
+
+    window.addEventListener('message', function (event) {
+        if (event.data.iframeHeight) {
+            var iframe = document.getElementById('myIframe');
+            iframe.style.height = event.data.iframeHeight + 'px';
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // 获取链接元素
+        var dashboard_url = document.getElementById('dashboard_url');
+        var DashboardUrl = "/app01/polaris/dashboard/{{uid}}";
+        // 添加点击事件监听器
+        dashboard_url.addEventListener('click', function (e) {
+            // 阻止默认的链接跳转行为
+            e.preventDefault();
+
+            // 执行关闭sidebar的逻辑
+            sidebar.classList.remove("open");
+            closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+
+            function Jump2Next() {
+                window.location.href = DashboardUrl;
+            }
+
+            setTimeout(Jump2Next, 500);
+        });
+    });
+
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        var write_note_url = document.getElementById('write_note_url');
+        var WriteNoteUrl = "/app01/polaris/write_note/{{uid}}"
+
+        write_note_url.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            sidebar.classList.remove("open");
+            closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+
+            function Jump2Next() {
+                window.location.href = WriteNoteUrl;
+            }
+
+            setTimeout(Jump2Next, 500);
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        var my_space_url = document.getElementById('my_space_url');
+        var MySpaceUrl = "/app01/polaris/my_space/{{uid}}"
+
+        my_space_url.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            sidebar.classList.remove("open");
+            closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+
+            function Jump2Next() {
+                window.location.href = MySpaceUrl;
+            }
+
+            setTimeout(Jump2Next, 500);
+        });
+    });
+
+
+</script>
+</body>
+</html>

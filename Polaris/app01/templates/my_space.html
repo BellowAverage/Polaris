@@ -1,0 +1,187 @@
+{% extends "note_template.html" %}
+{% load static %}
+
+{% block head %}
+
+<link rel="stylesheet" href="{% static 'my_space.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.5.1/github-markdown.min.css">
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+
+
+{% endblock %}
+
+{% block my_space %}
+<li class="selected_option" style="margin-bottom: 1rem;">
+    <a href="my_space/{{uid}}" id="my_space_url">
+        <i class='bx bx-copy'></i>
+        <span class="links_name">My Space</span>
+    </a>
+    <span class="tooltip">My Space</span>
+</li>
+{% endblock %}
+
+{% block main_content %}
+
+<button id="slideButton">Click to Slide In</button>
+
+<section class="home-section">
+    <div style="display:flex;display-direction:row;">
+    <div id="main-content">
+    <div class="head1"><b>Notes created by {{username}} are listed here.</b></div>
+
+        <p class="plain_text">Developing Version, Created by <b>Xinzhou Wang, Shanghai Uni.</b>
+            <br>Last refresh time is <b>{{ sys_info.time }}
+        </p>
+
+        <hr style="border-top: 0.3rem solid black;width:30rem;margin-left: 1.5rem; margin-top:1rem;margin-bottom:0.5rem;border-radius: 0.8rem;">
+
+        <p class="head3"><b> · Notes created recently</b></p>
+
+        <div class="recent_notes">
+
+            {% for note in notes %}
+            
+            <div class="card">
+                <img src="{% static 'img/polaris_notebook.png' %}" alt="Card Image" class="card-img">
+                <div class="card-body">
+                    <h5 class="card-title">{{note.title}}</h5>
+                    <p class="card-text">{{note.abstract}}</p>
+                    <div class="card-content" data-content="{{ note.content }}"></div>
+                    <div class="card-md_content" data-content="{{ note.md_content }}"></div>
+                    <p class="card-link">Read More</p>
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+
+
+    <script src="{% static 'my_space.js' %}"></script>
+    </div>
+
+    <div id="slide-in-content">
+        <div id="resizer"></div>
+        <div id="note_content_section" class="markdown-body">
+        </div>
+    </div>
+
+    <script>
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const cardLinks = document.querySelectorAll('.card-link');
+        
+            cardLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    console.log('clicked');
+        
+                    const slideInContent = document.getElementById('slide-in-content');
+                    const mainContent = document.getElementById('main-content');
+        
+                    // 如果slide-in-content已经打开，则不更改其状态
+                    if (slideInContent.style.right !== '0%') {
+                        slideInContent.style.right = '0%'; // 打开slide-in-content
+                        {% comment %} slideInContent.style.width = '100%'; {% endcomment %}
+                        slideInContent.style.width = '1425px';
+                    }
+        
+                    // 滚动到页面顶部
+                    window.scrollTo({
+                        top: 0,
+                        left: 0,
+                        behavior: 'smooth'
+                    });
+        
+                    // 获取并更新note的内容
+                    const card = this.closest('.card');
+                    const title = card.querySelector('.card-title').textContent;
+                    const content = card.querySelector('.card-content').dataset.content;
+                    var md_content = card.querySelector('.card-md_content').dataset.content;
+                    
+                    console.log("---")
+                    console.log(md_content)
+                    console.log("---")
+
+                    if(md_content!=='') {
+                        document.getElementById('note_content_section').innerHTML = marked.parse(md_content);
+
+                        $('#note_content_section').css({
+                            'box-sizing': 'border-box',
+                            'margin': '0 auto',
+                            'padding': '45px'
+                        });
+
+                    } else {
+                        const displayContent = `<p id='view_user'>Created by {{username}}</p>\n</p><h1 id='view_title'>${title}</h1><p id='view_content'>${content}</p>`;
+                        document.getElementById('note_content_section').innerHTML = displayContent;
+                        document.getElementById('view_user').style.marginLeft = "2rem";
+                        document.getElementById('view_user').style.marginBottom = "0.75rem";
+                        document.getElementById('view_title').style.marginLeft = "2rem";
+                        document.getElementById('view_user').style.marginBottom = "0.5rem";
+                        document.getElementById('view_content').style.marginLeft = "2rem";
+                    }
+
+
+                });
+            });
+        
+            
+
+            document.getElementById('slideButton').onclick = function() {
+                {% comment %} let originalWidth = slideInContent.offsetWidth + 'px';  // 存储当前宽度为字符串
+                if (slideInContent.style.right === '0%' || slideInContent.style.right === '0px') {
+                    slideInContent.style.right = '-100%';
+                    slideInContent.style.width = '0px';
+                    mainContent.style.width = '100%';
+                    
+                } else {
+                    slideInContent.style.right = '0%';
+                    slideInContent.style.width = originalWidth;
+                    mainContent.style.width = '100%';  // 根据实际布局调整       
+                } {% endcomment %}
+                
+                slideInContent.style.width = '0px';
+                
+                slideInContent.style.right = '-100%';
+            };
+        });
+
+        const resizer = document.getElementById('resizer');
+        const slideInContent = document.getElementById('slide-in-content');
+        let isResizing = false;
+        
+        resizer.addEventListener('mousedown', function(e) {
+            isResizing = true;
+        
+            // 拖动开始时移除transition效果
+            slideInContent.style.transition = 'none';
+        
+            document.addEventListener('mousemove', handleMouseMove);
+            document.addEventListener('mouseup', stopResize);
+        });
+        
+        function handleMouseMove(e) {
+            if (isResizing) {
+                const newWidth = window.innerWidth - e.clientX;
+                slideInContent.style.width = `${newWidth}px`;
+            }
+        }
+        
+        function stopResize(e) {
+            if (isResizing) {
+                document.removeEventListener('mousemove', handleMouseMove);
+                isResizing = false;
+    
+                slideInContent.style.transition = 'right 0.5s, width 0.5s';
+            }
+        }
+    </script>
+
+</div>
+</section>
+{% endblock %}

@@ -1,0 +1,11 @@
+
+--- 
+title:  【Yolact数据集制作-labelme使用与转coco详解】 
+tags: []
+categories: [] 
+
+---
+labelme2coco的数据处理 主要分两部分：1、用labelme标记样本获取json文件；2、json文件转coco数据集 两部分源代码跳转： 标记：https://github.com/wkentaro/labelme（不在讲述） 转coco：https://github.com/wkentaro/labelme/tree/main/examples/instance_segmentation
+
+#### json转coco
+-  **进入instance_segmentation文件夹** 打开咱之前下载的，激活环境为 labelme 进入到 labelme-main/examples/instance_segmentation文件夹 -  <img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/d2274dd6e7d744d295dfe3b04d30673c.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA546L5oyj6ZO2,size_20,color_FFFFFF,t_70,g_se,x_16">  这里解释一下，进入到instance_segmentation文件夹后，data_annotated是存放你样本数据和json的文件夹，可以把你的训练数据和json文件放到此目录。data_dataset_coo是运行后生成的文件夹，里面包含样本数据和coco标签数据 训练样本拷贝到data_annotated，修改labels.txt文件 <img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/8ccf6e96a9d04da395ce7a1883052cac.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA546L5oyj6ZO2,size_20,color_FFFFFF,t_70,g_se,x_16">进入terminal ，cd 到 instance_segmentation目录，输入以下代码 ./labelme2coco.py data_annotated data_dataset_coco --labels labels.txt<img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/76c38779b20242eeb92d16131e50c435.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA546L5oyj6ZO2,size_20,color_FFFFFF,t_70,g_se,x_16"> 运行完成后生成一个 data_dataset_coo文件夹，至此train样本的coco文件制作完成，val样本的coco文件重复以上步骤即可 <img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/b110055113d44ba3a8b5720e846fa0da.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA546L5oyj6ZO2,size_19,color_FFFFFF,t_70,g_se,x_16">3、放置到指定文件夹 文件目录如下，黄色方框里的文件夹要自己建立，红色方框是拷贝过来的之前生成的样本数据，蓝色方框是上一步生成的coco标签annotations.json，需要重命名如图内容后拷贝到对应目录！！ <img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/7a1f9827f53f4c45830311835e6c0415.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA546L5oyj6ZO2,size_20,color_FFFFFF,t_70,g_se,x_16">  工欲善其事必先利其器！至此，coco实例分割数据集建立完成！！！ 4、问题处理 4.1 处理中途无故退出 问题1：生成coco数据集的data_dataset_coco文件夹时，转换部分数据后自动退出且未生成annotations.json文件。 解决办法：数据集问题，检查数据集是否每张图像都有对应的json文件，删除掉没有json文件的图像。 问题2：数据集每次转换到xxx（如477张）就自动停止，没有任何报错 解决办法：找到第477张对应图像前后的几张图像，可能图像问题，删除掉错误图像即可 问题3：未知错误 解决办法：删除掉生成的data_dataset_coco文件夹后重新运行代码  

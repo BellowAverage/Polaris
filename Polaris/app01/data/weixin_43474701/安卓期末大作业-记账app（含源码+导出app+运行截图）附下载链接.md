@@ -1,0 +1,16 @@
+
+--- 
+title:  安卓期末大作业-记账app（含源码+导出app+运行截图）附下载链接 
+tags: []
+categories: [] 
+
+---
+### 安卓期末大作业-记账app（含源码+导出app+运行截图）
+
+开发软件：Android Studio 开发语言：Java 2023年上半年移动开发期末大作业记账app，老师给了95分，可以记录各种类型的账目支出记录，收入记录，存储到数据库中，可以隐藏账目记录，可以记录和删除记录，还可以将收支记录转图表分析，也可清空所有数据。具体如下图所示：
+
+ <img src="https://img-blog.csdnimg.cn/1fe026cb4a194032bca4484b08127638.png" alt="在这里插入图片描述">
+
+进入软件界面： <img src="https://img-blog.csdnimg.cn/4e24b7d4e74e4327b3070e5812f6d111.png" alt="请添加图片描述"> 账目支出记录，支出分各种类型区分 <img src="https://img-blog.csdnimg.cn/2161a8202e3140a8af3b831f80a9f139.png" alt="请添加图片描述"> 收入记录记账如下所示：<img src="https://img-blog.csdnimg.cn/a856bae5d2b04491939ebcfe50448a32.png" alt="请添加图片描述"> 账目记录如下所示： <img src="https://img-blog.csdnimg.cn/8b31bfd2396040b08ca56c3d62eaae43.png" alt="请添加图片描述"> 账目可以隐藏起来： <img src="https://img-blog.csdnimg.cn/f4153814f69440d09a238aae63b37098.png" alt="请添加图片描述"> 底部功能按钮如图所示： <img src="https://img-blog.csdnimg.cn/9d9c6cfb64944224b6513abc49fa2aa2.png" alt="请添加图片描述"> 可以选择一键清空数据： <img src="https://img-blog.csdnimg.cn/90f8f40671eb43a48b6e5b64333a663e.png" alt="请添加图片描述"> **记账app主要代码如下所示：** private void setLVLongClickListener() {<!-- --> todayLv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {<!-- --> @Override public boolean onItemLongClick(AdapterView&lt;?&gt; parent, View view, int position, long id) {<!-- --> if (position == 0) {<!-- --> //点击了头布局，不用进行操作 return false; } int pos = position - 1; AccountBean clickBean = mDatas.get(pos);//得到正在被点击的这条信息 //弹出提示用户是否删除对话框 showDeleteItemDialog(clickBean); return false; } }); } /* 弹出是否删除某一条记录的对话框 **/ private void showDeleteItemDialog(final AccountBean clickBean) {<!-- --> //创建对话框的建筑类 AlertDialog.Builder builder = new AlertDialog.Builder(this); builder.setTitle(“提示信息”).setMessage(“您确定要删除这条记录么？”) .setNegativeButton(“取消”,null) .setPositiveButton(“确定”, new DialogInterface.OnClickListener() {<!-- --> @Override public void onClick(DialogInterface dialog, int which) {<!-- --> int click_id = clickBean.getId(); //执行删除的操作 DBManager.deleteItemFromAccounttbById(click_id);//此时只是从数据库当中删除 mDatas.remove(clickBean);//实时刷新，移除集合当中的对象 adapter.notifyDataSetChanged();//提示adapter更新数据 setTopTvShow();//顶部数据进行更新，改变头布局TextView显示的内容 } }); builder.create().show();//生成对话框对象并显示出来 } /** 给ListView添加头布局的方法 **/ private void addLVHeaderView() {<!-- --> //将布局转化成View对象 headerView = getLayoutInflater().inflate(R.layout.item_mainlv_top, null); //设置头布局 todayLv.addHeaderView(headerView); //查找头布局当中需要用到的控件 topOutTv = headerView.findViewById(R.id.item_mainlv_top_tv_out); topInTv = headerView.findViewById(R.id.item_mainlv_top_tv_in); topBudgetTv = headerView.findViewById(R.id.item_mainlv_top_tv_budget); topConTv = headerView.findViewById(R.id.item_mainlv_top_tv_day); topShowIv = headerView.findViewById(R.id.item_mainlv_top_iv_hide); topBudgetTv.setOnClickListener(this); headerView.setOnClickListener(this); topShowIv.setOnClickListener(this); } /** 获取今日的具体事件 */ private void initTime() {<!-- --> Calendar calendar = Calendar.getInstance(); year = calendar.get(Calendar.YEAR); month = calendar.get(Calendar.MONTH) + 1; day = calendar.get(Calendar.DAY_OF_MONTH); } //当activity获取焦点时会调用的方法，返回的时候进行数据的加载更新 @Override protected void onResume() {<!-- --> super.onResume(); //加载数据库数据 loadDBData(); //更新顶部布局当中的数据 setTopTvShow(); }
+
+

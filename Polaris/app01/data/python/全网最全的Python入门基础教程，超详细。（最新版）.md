@@ -1,0 +1,578 @@
+
+--- 
+title:  全网最全的Python入门基础教程，超详细。（最新版） 
+tags: []
+categories: [] 
+
+---
+Python 是一门开源免费、通用型的脚本编程语言，它上手简单，功能强大，坚持「极简主义」。Python 类库（模块）极其丰富，这使得 Python 几乎无所不能，不管是传统的 Web 开发、PC 软件开发、Linux 运维，还是当下火热的机器学习、大数据分析、网络爬虫，Python 都能胜任。
+
+这套 Python 基础教程不是教科书，不会玩弄概念，而是力求口语化和通俗化，让读者尽快入门。
+
+如果有小朋友出于兴趣学习 Python，请引导他阅读本教程的前半部分，这是基础，可以降低学习成本；如果你想全面掌握 Python 编程，胜任企业中的实际项目开发，那你应该按部就班学习本教程的所有章节。
+
+千锤百炼，只为大作；精益求精，处处斟酌；这种教程，看一眼就倾心。
+
+一：学习目录
+
+第1章 Python编程基础
+
+1.编程语言是什么
+
+2.编译型语言和解释型语言
+
+3.Python是什么
+
+4.Python具有哪些特点（优点和缺点）
+
+5.学Python，不需要有编程基础！
+
+6.学Python能干什么
+
+7.Python 2.x和Python 3.x，初学者应如何选择？
+
+8.Python 3和Python 2的区别
+
+9.Python 2to3：自动将Python 2.x代码转换成Python3.x代码
+
+10.Windows安装Python
+
+11.Linux安装Python
+
+12.Mac安装Python环境
+
+13.python不是内部或外部命令的解决方法
+
+14.编写第一个Python程序
+
+15.Python交互式解释器
+
+16.Python注释
+
+第2章 变量类型和运算符
+
+1.Python变量及其使用
+
+2.Python变量命名规则
+
+3.Python数值类型（整形、浮点型和复数）
+
+4.Python字符串
+
+5.Python bytes
+
+6.Python转义字符
+
+7.Python格式化字符串
+
+8.Python截取字符串
+
+9.Python字符串大小写转换
+
+10.Python去除字符串中空格
+
+11.Python字符串操作（查找，替换，分割和连接）
+
+12.Python赋值运算符
+
+13.Python算术运算符
+
+14.Python位运算符
+
+15.Python bool类型和比较运算符
+
+16.Python逻辑运算符
+
+17.Python三目运算符
+
+18.Python运算符优先级
+
+第3章 列表、元组和字典
+
+1.Python序列（列表和元组）
+
+2.Python list()和tuple()
+
+3.Python list列表添加元素
+
+4.Python list列表删除元素
+
+5.Python list列表修改元素
+
+6.Python list常用方法
+
+7.Python字典
+
+第4章 Python流程控制
+
+1.Python if else条件语句
+
+2.Python pass
+
+3.Python assert断言
+
+4.Python while循环
+
+5.Python for循环
+
+6.Python循环结构中else用法
+
+7.Python循环嵌套
+
+8.Python列表推导式
+
+9.Python zip函数
+
+10.Python reversed函数
+
+11.Python sorted函数
+
+12.Python break
+
+13.Python continue
+
+14.Python项目实战之数字转人民币读法
+
+15.Python项目实战之绕圈圈面试题
+
+第5章 函数和lambda表达式
+
+1.Python函数
+
+2.Python函数返回多个值
+
+3.Python函数递归
+
+4.Python关键字参数
+
+5.Python默认参数
+
+6.Python可变参数
+
+7.Python函数参数传递机制
+
+8.Python变量作用域
+
+9.Python局部函数
+
+10.Python函数高级用法
+
+11.Python lambda表达式
+
+第6章 Python类和对象
+
+1.Python类的定义
+
+2.Python类对象的创建和使用
+
+3.python self
+
+4.Python类调用实例方法
+
+5.Python静态方法和类方法
+
+6.Python @函数装饰器
+
+7.Python类命名空间
+
+8.Python类变量和实例变量
+
+9.Python property函数
+
+10.Python封装
+
+11.Python继承机制
+
+12.Python父类方法重写
+
+13.Python super
+
+14.Python __slots__
+
+15.Python type
+
+16.Python metaclass
+
+17.Python多态
+
+18.Python issubclass和isinstance
+
+19.Python枚举类
+
+第7章 Python异常处理机制
+
+1.Python异常处理机制
+
+2.Python try except else
+
+3.Python finally
+
+4.Python raise
+
+5.Python traceback
+
+6.正确使用Python异常处理机制
+
+第8章 类特殊成员（属性和方法）
+
+1.Python __repr__
+
+2.Python __del__
+
+3.Python __dir__
+
+4.Python __dict__
+
+5.Python setattr、getattr、hasattr
+
+6.Python __call__
+
+7.Python 序列相关操作
+
+8.Python __iter__和__reversed__
+
+9.Python生成器
+
+第9章 Python模块和包
+
+1.Python import导入模块
+
+2.Python自定义模块
+
+3.Python加载模块
+
+4.Python __all__变量
+
+5.Python包
+
+6.Python查看模块方法
+
+7.Python __doc__
+
+8.Python __file__
+
+第10章 Python常见模块
+
+1.Python sys
+
+2.Python os
+
+3.Python random
+
+4.Python time
+
+5.Python json
+
+6.Python re
+
+7.Python set和frozenset
+
+8.Python queue
+
+9.Python heapq
+
+10.Python ChainMap
+
+11.Python Counter
+
+12.Python defaultdict
+
+13.Python namedtuple
+
+14.Python OrderedDict
+
+15.Python itertools
+
+16.Python functools
+
+第11章 Tkinter
+
+1.Python GUI库
+
+2.Python Tkinter
+
+3.Python Tkinter Pack
+
+4.Python Tkinter Grid
+
+5.Python Tkinter Place
+
+6.Python Tkinter command和bind
+
+7.Python Tkinter ttk
+
+8.Python Tkinter Variable
+
+9.Python Tkinter compound
+
+10.Python Tkinter Entry和Text
+
+11.Python Tkinter Radiobutton和Checkbutton
+
+12.Python Tkinter Listbox和Combobox
+
+13.Python Tkinter Spinbox
+
+14.Python Tkinter Scale和LabeledScale
+
+15.Python Tkinter LabelFrame
+
+16.Python Tkinter Panedwindow
+
+17.Python Tkinter OptionMenu
+
+18.Python Tkinter对话框
+
+19.Python Tkinter自定义对话框
+
+20.Python Tkinter输入对话框
+
+21.Python Tkinter文件对话框
+
+22.Python Tkinter askcolor
+
+23.Python Tkinter消息框
+
+24.Python Tkinter Menu菜单
+
+25.Python tkinter Canvas
+
+26.tkinter Canvas tag_bind
+
+27.Python tkinter Canvas绘制动画
+
+第12章 Python文件操作（I/O）
+
+1.Python pathlib
+
+2.Python os.path
+
+3.Python fnmatch
+
+4.Python open
+
+5.Python read
+
+6.Python readline和readlines
+
+7.Python fileinput
+
+8.Python for循环读取文件
+
+9.Python with
+
+10.Python linecache
+
+11.Python写入文件（write和writelines）
+
+12.Python os
+
+13.Python tempfile
+
+第13章 Python数据库编程
+
+1.Python数据库API
+
+2.Python SQLite创建数据表
+
+3.SQLite Expert安装和使用
+
+4.Python execute和executemany
+
+5.Python fetchone、fetchmany和fetchall
+
+6.Python executescript
+
+7.Python SQLite create_function
+
+8.Python SQLite create_aggregate
+
+9.Python SQLite create_collation
+
+10.MySQL数据库下载和安装
+
+11.Python pip
+
+12.Python MySQL数据库执行DDL语句
+
+13.Python MySQL数据库执行DML语句
+
+14.Python MySQL数据库执行查询语句
+
+15.Python MySQL callproc
+
+第14章 Python并发编程
+
+1.什么是线程（多线程）
+
+2.Python创建线程
+
+3.Python线程的生命周期
+
+4.Python Thread join
+
+5.Python守护线程
+
+6.Python sleep
+
+7.Python线程安全（同步锁Lock）
+
+8.Python线程死锁
+
+9.Python condition实现线程通信
+
+10.Python Queue队列实现线程通信
+
+11.Python Event实现线程通信
+
+12.Python线程池
+
+13.Python threading Local
+
+14.Python Timer定时器
+
+15.Python schedule
+
+16.Python fork
+
+17.Python Process
+
+18.Python设置进程启动的2种方式
+
+19.Python使用进程池管理进程
+
+20.Python进程间通信的方法
+
+第15章 Python网络编程
+
+1.什么是计算机网络，TCP/IP协议和端口号
+
+2.Python网络编程模块
+
+3.Python urllib.parse
+
+4.Python urllib.request
+
+5.Python http.cookiejar
+
+6.什么是TCP协议
+
+7.Python socket建立TCP连接
+
+8.Python多线程实现socket通信
+
+9.Python socket shutdown
+
+10.Python selectors
+
+11.UDP协议是什么
+
+12.socket发送和接受数据（基于UDP协议）
+
+13.UDP多点广播
+
+14.Python smtplib
+
+15.Python poplib
+
+第16章 Python文档和测试
+
+1.Python pydoc
+
+2.Python doctest
+
+3.Python unittest（PyUnit）
+
+4.Python TestSuite
+
+5.Python setUp和tearDown
+
+6.Python unittest跳过测试用例
+
+第17章 Python打包和发布
+
+1.Python zipapp打包
+
+2.Python PyInstaller
+
+第18章 Python数据可视化
+
+1.Python Matplotlib安装
+
+2.Python Matplotlib plot
+
+3.Python Matplotlib legend
+
+4.Python Matplotlib time、xlabel、ylabel、xticks、yticks
+
+5.Python Matplotlib subplot
+
+6.Python Matplotlib pie
+
+7.Python Matplotlib绘制柱状图（bar和barh函数）
+
+8.Python Matplotlib scatter
+
+9.Python Matplotlib contour和contourf
+
+10.Python plot_surface
+
+11.Python Pygal
+
+12.Python Pygal常见数据图
+
+13.Python读取csv文件
+
+14.Python读取JSON文件
+
+15.Python读取网络数据
+
+第19章 Python Scrapy网络爬虫
+
+1.网络爬虫是什么
+
+2.Python Scrapy安装
+
+3.Python Scrapy项目创建
+
+4.Python Scrapy shell
+
+5.Python Scrapy爬虫项目开发过程
+
+6.Python scrapy爬虫数据保存到MySQL数据库
+
+7.Python Scrapy突破反爬虫机制
+
+8.Python Scrapy反爬虫解决方案
+
+9.Python Scrapy整合Selenium
+
+二、学习曲线
+
+<img alt="" height="1200" src="https://img-blog.csdnimg.cn/052201189c8e4f608c18699abdb646b5.jpeg" width="872">
+
+
+
+三、优质资源
+
+ <img alt="" src="https://img-blog.csdnimg.cn/682376bb21de4c2186f015311a178c2d.jpeg">
+
+ 
+
+ <img alt="" src="https://img-blog.csdnimg.cn/f799d42e605a44858efa6df761077d20.png">
+
+ 
+
+
+
+本资源一共800G，永久保存，并且会持续更新，建议大家转发收藏，方便以后查找学习；
+
+这只是一小部分资料截图哟~
+
+四、获取方式 感兴趣的可以看一下我这一串神秘数字代码 J2030998 通过会给你资料链接，感兴趣的小伙伴别忘了点个赞再走哦~
+
+ <img alt="" height="147" src="https://img-blog.csdnimg.cn/579c2917137e42f29660ae275178d89a.png" width="144">
+
+
+
+

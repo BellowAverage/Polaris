@@ -1,0 +1,47 @@
+Polaris/
+    uwsgi.ini
+    .env
+    manage.py
+    uwsgi.pid
+    uwsgi.log
+    django.log
+    Polaris/
+        urls.py
+        polaris.sql
+        wsgi.py
+        asgi.py
+        settings.py
+
+    app01/
+        urls.py
+        views.py
+
+        data/
+        middleware/
+            openai_api.py
+            baidu_api.py
+            SQLConn.py
+
+        utils/
+            notes_data/
+            data_miner/
+            polaris_ai/
+
+        static/
+            my_space.css
+            polaris.css
+            note_template.js
+            my_space.js
+            write_note.js
+            example.js
+            note_template.css
+            example.css
+            img/
+
+        templates/
+            example.html
+            polaris.html
+            dashboard.html
+            my_space.html
+            note_template.html
+            write_note.html

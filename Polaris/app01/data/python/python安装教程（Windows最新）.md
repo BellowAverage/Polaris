@@ -1,0 +1,20 @@
+
+--- 
+title:  python安装教程（Windows最新） 
+tags: []
+categories: [] 
+
+---
+**python学习资料下载地址：**
+
+前些天买了新的笔记本电脑，于是想出一些软件的安装和环境的配置教程。 本文介绍的是python的详细安装教程和环境变量的配置。（**下载快的话两分钟搞定）**
+
+1、在官网找到你想安装的版本 **官网地址：https://www.python.org/** **选择下载windows版本** <img src="https://img-blog.csdnimg.cn/dd3a09e316634c899cf2fd75b739d63a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA55qu5bCP5a2pbHM=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"> 目前最新的版本是3.10.1，在稳定版中下拉**选择一个你想要的版本，直接下载installer即可**，我下载的是最新版本。（如果你的电脑是win7或者XP系统，就需要下载旧一点的版本了，他上面也有提示）<img src="https://img-blog.csdnimg.cn/912eee219b9240269a55f158d8a0f905.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA55qu5bCP5a2pbHM=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"> 如果下载很慢的话，可以打开手机热点，电脑连接手机热点后再重新下载，速度应该会有所提升。 或者使用国内镜像：http://npm.taobao.org/mirrors/python/ 选择一个版本，下载exe文件（Windows 64位机器） <img src="https://img-blog.csdnimg.cn/56d84c87d14947a79e22e031e2606ff5.png" alt="在这里插入图片描述"> <img src="https://img-blog.csdnimg.cn/a8f8fa1baf0940db92d634e13b7a95ae.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA55qu5bCP5a2pbHM=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述">
+
+2、**下载完后双击打开exe**就可以开始安装了 <img src="https://img-blog.csdnimg.cn/74875f0ab7374c41991ac1a8b4fc7bb5.png" alt="在这里插入图片描述">
+
+**记住要把下面的Add Python * to PATH勾选上**（这样会自动给你配置好环境变量，十分方便） **然后点击install Now** <img src="https://img-blog.csdnimg.cn/6fda4e8f4d2749ce8fbca729e1a34d0b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA55qu5bCP5a2pbHM=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"> 稍等片刻就安装成功了，出现下图后点击close。 <img src="https://img-blog.csdnimg.cn/52e8be1fbdfc48f0a7c2f8b70eeb9c83.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA55qu5bCP5a2pbHM=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"> 如果你忘了勾选Add Python * to PATH，可以**手动添加环境变量**。 全局搜索环境变量 <img src="https://img-blog.csdnimg.cn/ac43cf1d1d6245f58aea2c6d1f2fec5d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA55qu5bCP5a2pbHM=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"> 点击环境变量 <img src="https://img-blog.csdnimg.cn/af3f5cf8c4b545bfb305ddf8cdec567d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA55qu5bCP5a2pbHM=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"> 双击用户变量的Path <img src="https://img-blog.csdnimg.cn/8994d1070aa343a19e9ecad7258025e6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA55qu5bCP5a2pbHM=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"> 点击浏览，找到python所在位置，然后点击确定即可。（可以参考我的两个路径） <img src="https://img-blog.csdnimg.cn/70c09f6e2c2a4832a4d6b4a0e36ebac2.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA55qu5bCP5a2pbHM=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"> 或者点击新建，然后把路径复制进去。（一般来说路径都是C:\Users\你的用户名\AppData\Local\Programs\Python\Python310，其中python310表示我的python版本是3.10，如果你的是3.7版本那么就是python37） 如果你找不到AppData文件夹，那就需要让他显示隐藏的项目。（我的是win11，win10位置有点不一样，但大同小异） <img src="https://img-blog.csdnimg.cn/897871b4c6514f9295254d6f2e1c6de5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA55qu5bCP5a2pbHM=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述">
+
+3、来看看自己是否安装成功 **按下win+r，输入cmd** <img src="https://img-blog.csdnimg.cn/a3bafe72682349fba1228afe7b573443.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA55qu5bCP5a2pbHM=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"> **输入python后回车**，出现你安装的python版本就说明安装成功，且环境变量已经配置成功！ <img src="https://img-blog.csdnimg.cn/7f337061b74a4d35be5371f1420305f2.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA55qu5bCP5a2pbHM=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"> 输入print(‘hello world’)，开始你的python学习之旅。 <img src="https://img-blog.csdnimg.cn/efdf2431406b4f22b80cbd25f90734e3.png" alt="在这里插入图片描述"> 输入exit()退出。
+
+到此python安装教程结束，我们还需要一个强大的开发环境使我们写代码变得方便，请看下一篇文章： **安装完后，试试python爱心代码吧：** **python学习资料下载地址：** <img src="https://img-blog.csdnimg.cn/63d5f7de8064445aa26576ceaedc2f78.png" alt="在这里插入图片描述">

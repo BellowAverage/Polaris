@@ -1,0 +1,66 @@
+
+--- 
+title:  python官网地址-python官方网站 
+tags: []
+categories: [] 
+
+---
+<img src="https://ask.qcloudimg.com/raw/yehe-2065cbc814f/flbm1hkjk6.jpg" alt="flbm1hkjk6.jpg">广告关闭
+
+2017年12月，云+社区对外发布，从最开始的技术博客到现在拥有多个社区产品。未来，我们一起乘风破浪，创造无限可能。
+
+<img src="https://ask.qcloudimg.com/http-save/yehe-1586536/38y6w4n38u.png" alt="38y6w4n38u.png">
+
+由于整个python语言从规范到解释器都是开源的，所以理论上，只要水平够高，任何人都可以编写python解释器来执行python代码（当然难度很大）。 事实上，确实存在多种python解释器。 cpython当我们从python官方网站下载并安装好python 2.7后，我们就直接获得了一个官方版本的解释器：cpython。 这个解释器是用c语言开发...
+
+因为python有好几种解释器，分别基于不同语言开发，每个解释器特点不同，但都能正常运行我们的python代码，下面分别来看下： #cpython：cpython是使用最广且被的python解释器。 本教程以cpython为准。 当我们从python官方网站下载并安装好python 2.7后，我们就直接获得了一个官方版本的解释器：cpython。 这个解释器...
+
+<img src="https://ask.qcloudimg.com/http-save/yehe-7778542/ap8bqbij31.jpeg" alt="ap8bqbij31.jpeg">
+
+这节课我们一起来学习，如何将 python下载和安装到自己的电脑。 亲自动手，安装和运行python几项约定：本课程讲解的所有内容默认在 windows 中进行。 我们将下载、安装、运行的python版本为windows版。 python2和python3是有差别的，本课程推荐和使用python3。 1、注意事项：建议到python官方网站（https:www.python...
+
+python简介python是著名的“龟叔”guido van rossum在1989年圣诞节期间，为了打发无聊的圣诞节而编写的一个编程语言，python官方网站 。 python是一种计算机程序设计语言。 你可能已经听说过很多种流行的编程语言，比如非常难学的c语言，非常流行的java语言，适合初学者的basic语言，适合网页编程的javascript语言 ...
+
+<img src="https://ask.qcloudimg.com/http-save/yehe-1754229/j5fi2qi2yl.jpeg" alt="j5fi2qi2yl.jpeg">
+
+机器之心报道机器之心编辑部作为目前最为流行的编程语言，python 的出现让计算机编程不再是生僻的专业技能，而是常人都能学习和使用的万金油，它也是人工智能领域里最为常用的语言之一。 不过在三个月内，python 或许要经历史上最大的一次变化。? 昨天，python 官方网站的一纸声明《python 2 的落幕》引发了人们的...
+
+由于整个python语言从规范到解释器都是开源的，所以理论上，只要水平够高，任何人都可以编写python解释器来执行python代码（当然难度很大）。 事实上，确实存在多种python解释器。 cpython 当我们从python官方网站下载并安装好python 2.7后，我们就直接获得了一个官方版本的解释器：cpython。 这个解释器是用c语言...
+
+<img src="https://ask.qcloudimg.com/http-save/yehe-2398817/p1f0zlq3iu.png" alt="p1f0zlq3iu.png">
+
+在linux电脑上安装python，ipython，pycharm专业版本软件; (1)在python官方网站上下载所安装包(2)安装安装python# yum install python -y#安装源在镜像文件 中，需配置yum源 ? 安装ipython得到了ipython及依赖性软件，放在目录中# yum install * -y ? 得到pycharm专业版本软件的压缩包# tar xf pycharm-professional...
+
+一个python解释器进程内有一条主线程，以及多条用户程序的执行线程。 即使在多核cpu平台上，由于gil的存在，所以禁止多线程的并行执行。 关于这个问题的折衷解决方法，我们在以后线程和进程章节里再进行详细探讨。 python解释器cpython当我们从python官方网站下载并安装好python 2.7后，我们就直接获得了一个官方版本...
+
+2.1 gil 相关概念gil 全称 global interpreter lock（全局解释器锁），是 python 解释器 cpython 采用的一种机制，通过该机制来控制同一时刻只有一条线程执行 python 字节码，本质是一把全局互斥锁，将并行运行变成串行运行。 什么是 cpython 呢？ 我们从 python 官方网站下载安装 python 后，获得的官方解释器就是 ...
+
+<img src="https://ask.qcloudimg.com/http-save/yehe-2398817/6ug190torh.png" alt="6ug190torh.png">
+
+www.liaoxuefeng.comwiki0014316089557264a6b348958f449949df42a6d3a2e542c0001、python简介python是著名的“龟叔”guido van rossum在1989年圣诞节期间，为了打发无聊的圣诞节而编写的一个编程语言，python官方网站 。 python是一种计算机程序设计语言。 你可能已经听说过很多种流行的编程语言，比如非常难学的c语言...
+
+<img src="https://ask.qcloudimg.com/http-save/yehe-4661165/ygfizs57yb.jpeg" alt="ygfizs57yb.jpeg">
+
+正文共：653 字 8 图 预计阅读时间：2 分钟前文推送mit线性代数相关资源汇总pandas可视化（一）：pandas.series.plot时间序列基础知识 python官方中文文档地址： https:docs.python.orgzh-cn 中文文档的主页面如下 ? 推测目前还是在翻译进程当中，因此从 python.org 进去可以发现文档支持的语言中并不包含中文。?...
+
+为什么doc.xpatheval(child::bookstore)doc.xpatheval(descendant::bookstore)doc.freedoc()例四：import libxml2doc =libxml2.parsefile(tmpbooks.xml)doc.xpatheval(bookstorebook).contentdoc.xpatheval(bookstorebook)doc.freedoc()2.google的开源项目，python官方网站上推荐的xpath项目，版本为0.1http...
+
+python3的下载与安装1、首先，从python官方网站：http:python.orggetit，下载windows的安装包ython官网有几个下载文件，有什么区别？ python 3. 6. 0a1 - 2016-05-17download windows x86 web-based installerdownload windows x86executable installerdownload windows x86 embeddable zip filedownload windows...
+
+由于整个python语言从规范到解释器都是开源的，所以理论上，只要水平够高，任何人都可以编写python解释器来执行python代码(当然难度很大)。 事实上，确实存在多种python解释器。 cpython当我们从python官方网站下载并安装好python 3.x后，我们就直接获得了一个官方版本的解释器：cpython。 这个解释器是用c语言开发的...
+
+时不我待，趁着有精力有兴趣，我要重启学习计划了。 很多人都在问python怎么学习，搞来一堆免费的资料，不知如何下手。 也有人投入大量时间金钱，培训班或者线上课程，却收效甚微。 其实，我们可能忽略了一个学习python的最好的免费老师——python官方网站和文档：https:www.python.org 最开始接触官方网站文档肯定是...
+
+<img src="https://ask.qcloudimg.com/http-save/yehe-1295189/hwigldbpad.png" alt="hwigldbpad.png">
+
+安装成功后，你可以把本地创建好项目直接拖放过来，它会以项目管理的形式展示，你就可以利用它来编写python语言，它对python语言具有语法突显功能，使得阅读代码更方便。 一个python3的软件工作环境，你可以直接去python官方网站上面下载python3系列的软件或者利用anaconda数据科学软件套件包，选择适配你电脑系统和...
+
+<img src="https://ask.qcloudimg.com/http-save/yehe-1902369/c0dcga3dce.jpeg" alt="c0dcga3dce.jpeg">
+
+1、下载到python官方网站下载对应版本的python。 python官网：https:www.python.org? 如上图，直接选择windows版本，进入python版本选择页面。? 直接点击这个就可以进入下载页面，选择要下载的系统版本，如下图。 如果要下载往期版本，那么在这个页面直接下拉查找即可。 如下页面即为2. 7.15版本对应的操作系统，下载...
+
+python的获取： 方式一：python官方网站获取 方式二：小蓝枣的资源仓库，提取码：ru99 官网下的可能有点慢，可以在我的资源仓库获取。 说明： 这里的64不是指通常的64位，虽然我的操作系统是64位的，但是我的指令集是em64t的，所以我下载x86的，如果细心的你点下载x86-64后你就会发现64后面多个amd，虽然基础的使用很...
+
+缺点运行速度较c和java相比较慢。 不可加密。 由于gil锁的存在，python的线程无法利用多cpu。 需要解释器支持才可执行。 解释器种类 cpython 当我们从python官方网站下载并安装好python 3.6后，我们就直接获得了一个官方版本的解释器：cpython。 这个解释器是用c语言开发的，所以叫cpython。 在命令行下运行python...
+
+第2题：python解释器种类以及特点？ python 当 从python官方网站下载并安装好python2.7后，就直接获得了一个官方版本的解释器：cpython，这个解释器是用c语言开发的，所以叫 cpython，在命名行下运行python，就是启动cpython解释器，cpython是使用最广的python解释器。 ipython ipython是基于cpython之上的一个交互式...

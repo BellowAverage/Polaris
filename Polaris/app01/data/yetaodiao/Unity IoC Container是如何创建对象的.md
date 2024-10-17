@@ -1,0 +1,60 @@
+
+--- 
+title:  Unity IoC Container是如何创建对象的 
+tags: []
+categories: [] 
+
+---
+Unity是微软P&amp;P推出的一个开源的IoC框架。Unity之前的版本建立在一个称为ObjectBuild的组件上，熟悉EnterLib的读者，相信对ObjectBuild不会感到陌生。对于EnterLib 5.0之前的版本，ObjectBuild可以说是所有Application Block的基石。ObjectBuild提供一种扩展、可定制的对象创建方式，虽然微软官方没有将ObjectBuild和IoC联系在一起，其本质可以看成是一个IoC框架。在Unity 2.0中，微软直接将ObjectBuild（实际上是ObjectBuild的第二个版本ObjectBuild2）的绝大部分功能实现在了Unity中，而EnterLib则直接建立在Unity之上。由此可见Unity在EnterLib以及微软其他一些开源框架（比如Software Factory）中的重要地位。
+
+Unity IoC Container是如何创建对象的从以下几个方面说起。
+
+## **<strong>一、从管道+上下文（Pipeline+Context）模式说起**</strong>
+
+如果要说Unity Container采用的怎样的设计/架构模式的话，我的回答是“**管道+上下文（Pipeline + Context）模式**”（我不知道是否真的具有这样一种叫法）。在《WCF技术剖析（卷1）》中介绍Binding一章中，我曾经对该模式作了一个类比：“比如有一个为居民提供饮用水的自来水厂，它的任务就是抽取自然水源，进行必要的净化处理，最终输送到居民区。净化处理的流程可能是这样的：天然水源被汲取到一个蓄水池中先进行杂质的过滤（我们称这个池为过滤池）；被过滤后的水流到第二个池子中进行消毒处理（我们称这个池为消毒池）；被消毒处理的水流到第三个池子中进行水质软化处理（我们称这个池为软化池）；最终水通过自来水管道流到居民的家中。”
+
+当我们需要创建一个基础架构对某种元素（例子中需要进行处理的水）进行一系列处理的时候，我们就可以将相应的处理逻辑（例子中的过滤、消毒和软化）实现在相应“节点”（例子中的过滤池、消毒池和软化池 ）中。根据需要（比如水质情况）对相应的节点进行有序组合（水质的不同决定了处理工序的差异）从而构成一个管道（自来水厂整个水处理管道）。由于每一个节点具有标准的接口，我们可以对组成管道的各个节点具有任意重组，也可以为某种需要自定义节点，从而使我们的“管道”变得能够适应所有的处理需要。
+
+对于这样的设计，其实我们并不陌生。比如ASP.NET的运行时就可以看成是一个由若干HttpModule组成的处理HTTP请求的管道，WCF中Binding就是一个由若干信道（Channel）组成的处理Message的管道。相同的设计还体现在.NET Remoting, BizTalk等相关框架和产品的设计上。
+
+基于相应标准的“节点”进行有序组合构成管道，但是各个相对独立的节点如何进行相应的协作呢？这就需要在整个管道范围内共享一些上下文（Context），上下文是对管道处理对象和处理环境的封装。ASP.NET运行时管道的上下文对象是HttpContext，而Binding管道的上下文是BindingContext。
+
+## **<strong>二、UnityContainer是BuildStrategy的管道**</strong>
+
+<img alt="" src="https://img-blog.csdnimg.cn/img_convert/a20ecc27e13ea58bbf0a993a1bdbad58.png">
+
+作为一个IoC框架，Unity Container的最终目的动态地解析和注入依赖，最终提供（创建新对象或者提供现有对象）一个符合你要求的对象。为了让整个对象提供处理流程变得可扩展和可订制，整个处理过程被设计成一个管道。管道的每一个节点被称为**BuilderStrategy**，它们按照各自的策略参与到整个对象提供处理流程之中。
+
+除了对象的提供功能之外，Unity Container还提供另一个相反的功能：对象的回收。我们暂且将两者称之为Build-Up和Tear-Down。Build-Up和Tear-Down采用相同的处理机制。
+
+**左图**反映的就是Unity Container由若干BuilderStrategy组成的一个用于进行对象的Build-Up和Tear-Down的管道。每一个BuildStrategy具有相同的接口（这个接口是），它们具有四个标准的方法：PreBuildUp、PostBuildUp、PreTearDown和PostTearDown。从名称我们不难看出，四个方法分别用于完成对象创建前/后和对象回收前后相应的操作。具体来说，当需要利用该管道创建某个对象的时候，先按照BuilderStrategy在管道中的顺序调用PreBuildUp方法，到管道底端后，按照相反的顺序调用PostBuildUp方法。
+
+对于组成Unity Container管道的各个BuilderStrategy来说，它们彼此是相互独立的，一个BuilderStrategy只需要完成基于自身策略相应的操作，不需要知道其他BuilderStrategy的存在。只有这样才能实现对管道的灵活定制，真正实现可扩展。但是在真正工作的时候，彼此之间需要共享一些上下文以促进相互协作。在这里，BuilderContext起到了这样的作用。在Unity中，BuilderContext实现了，我们不妨来看看定义了些什么:
+
+上面对的定义中，简单起见，我刻意省略了一些属性。在上述的属性列表中，BuildComplete表示Build操作是否被标识为结束，如果某个BuilderStrategy已经完成了Build的操作，可以将其设置为True，这样后续的BuilderStrategy就可以根据该值进行相应的操作（大部分将不作进行后续的Build）；BuildKey和OriginalBuildKey是一个以Type + Name为组合的代表当前Build操作（通过CurrentOperation表示）的键；Existing属性表示已经生成的对象，一般来讲BuilderStrategy会将自己生成的对象赋给该值；而Strategies则代表了整个BuilderStrategy管道。
+
+## **<strong>三、创建一个最简单的BuilderStrategy**</strong>
+
+现在我们编写一个最简单不过的例子，看看UnityContainer是如何借助于BuilderStrategy管道进行对象的提供的（你可以通过下载源代码）。我们先来创建一个最简单不过的BuilderStrategy，我们的策略就是**通过反射的方式来创建对象**，为此我们将该BuilderStrategy命名为ReflectionBuilderStrategy。
+
+ReflectionBuilderStrategy继承自统一的基类BuilderStrategy。由于我们只需要ReflectionBuildStrategy进行对象的创建，这里我们只需要重写PreBuildUp方法。在PreBuildUp方法中，如果需要提供的对象已经存在（通过BuilderContext的Existing属性判断）或者Build操作已经完成（通过BuilderContext的BuildComplete属性判断），则直接返回。否则通过BuilderContext的BuildKey属性得到需要创建对象的类型，通过反射的机制创建该对象，将其赋给BuilderContext的Existing属性，并将BuildComplete设置成True。
+
+现在BuilderStrategy已经创建成功，如何将它添加到UnityContainer的BuilderStrategy管道呢？一般地，我们需要为BuilderStrategy创建相应的扩展对象。为此，下面我们创建了一个继承自的类型ReflectionContainerExtension：
+
+在ReflectionContainerExtension中，我仅仅重写了Initialize方法。在该方法中，通过Context属性得到相应UnityContainer的BuilderStrategy管道，并调用AddNew方法将我们创建的ReflectionBuilderStrategy添加进取。泛型方法AddNew接受一个UnityBuildStage类型的枚举。UnityBuildStage代表整个Build过程的某个阶段，在这里决定了添加的BuilderStrategy在管道中的位置。现在我们假设需要通过UnityContainer来创建下面一个类型为Foo的对象：
+
+真正通过UnityContainer进行对象的提供实现在下面的代码中。由于UnityContainer在初始化的过程中会通过这么一个扩展，所以我特意通过调用RemoveAllExtension将其清除。然后调用AddExtension将我们上面创建的ReflectionContainerExtension添加到UnityContainer的扩展列表中。最后3次调用UnityContainer的Resolve方法得到Foo对象，并将ID输出。
+
+下面是输出结果：
+
+## **<strong>四、通过自定义BuilderStrategy实现单例模式**</strong>
+
+上面的例子已经能够基本上反映出UnityContainer借助于BuilderStrategy管道的对象提供机制了。为了更加进一步的说明“管道”的存在，我们再自定义另一个简单的BuilderStrategy，实现我们熟悉的单例模式（基于UnityContainer对象来说是单例）。下面是是实现单例模式的BuilderStrategy：SingletonBuilderStrategy，和相应的Unity扩展。在SingletonBuilderStrategy中，我们通过一个静态字典用于缓存创建成功的对象，该对象在字典中的Key为创建对象的类型。被创建的对象在PostCreate方法中被缓存，在PreCreate中被返回。为了将该SingletonBuilderStrategy至于管道的前端，在添加的时候指定的UnityBuildStage为Setup。
+
+现在，我们将基于SingletonBuilderStrategy的扩展添加到之前的程序中。再次运行我们的程序，你会发现输出的ID都是一样的，由此可见三次创建的对象均是同一个。
+
+输出结果：
+
+**Unity IoC Container是如何创建对象总结：**虽然Unity具体的实现机制相对复杂，但是其本质就是本文所介绍的基于BuilderStrategy+BuilderContext的Pipeline+Context的机制。当你在研究Unity的具体实现原理的时候，抓住这个原则会让你不至于迷失方向。
+
+ 

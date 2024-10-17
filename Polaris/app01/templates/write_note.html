@@ -1,0 +1,174 @@
+{% extends "note_template.html" %}
+{% load static %}
+
+{% block head %}
+<link
+href="{% static "quill/quill.snow.css" %}"
+rel="stylesheet"/>
+
+{% comment %} <link
+href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.3/dist/quill.snow.css"
+rel="stylesheet"/> {% endcomment %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.3/dist/quill.js"></script>
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"/>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+
+<link
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"/>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+{% endblock %}
+
+
+{% block write_note %}
+<li class="selected_option" style="">
+    <a href="write_note/{{uid}}" id="write_note_url">
+        <i class='bx bx-edit-alt'></i>
+        <span class="links_name">Write Note</span>
+    </a>
+    <span class="tooltip">Write Note</span>
+</li>
+{% endblock %}
+
+
+{% block main_content %}
+<section class="home-section" style="display:flex;flex-direction:row;">
+<div class="write_section">
+    <div class="head1"><b>Hello {{username}}, Let's write some notes!</b></div>
+
+    <p class="plain_text"><b> · </b>Developing Version, Created by <b>Xinzhou Wang, Shanghai Uni.</b>
+        <br><b> · </b>Last refresh time is <b>{{ sys_info.time }}
+    </p>
+
+    <hr style="border-top: 0.3rem solid black;width:60%;margin-left: 1.5rem; margin-top:1rem;margin-bottom:0.5rem;border-radius: 0.8rem;">
+    
+    <!-- Create the editor container -->
+    <div class="editor_zoon">
+        <div id="toolbar-container">
+            {% comment %} <span class="ql-formats">
+                <select class="ql-font"></select>
+                <select class="ql-size"></select>
+            </span> {% endcomment %}
+            <span class="ql-formats">
+                <button class="ql-bold"></button>
+                <button class="ql-italic"></button>
+                <button class="ql-underline"></button>
+                <button class="ql-strike"></button>
+            </span>
+            <span class="ql-formats">
+                <select class="ql-color"></select>
+                <select class="ql-background"></select>
+            </span>
+            <span class="ql-formats">
+                <button class="ql-script" value="sub"></button>
+                <button class="ql-script" value="super"></button>
+            </span>
+            <span class="ql-formats">
+                <button class="ql-header" value="1"></button>
+                <button class="ql-header" value="2"></button>
+                <button class="ql-blockquote"></button>
+                <button class="ql-code-block"></button>
+            </span>
+            <span class="ql-formats">
+                <button class="ql-list" value="ordered"></button>
+                <button class="ql-list" value="bullet"></button>
+                <button class="ql-indent" value="-1"></button>
+                <button class="ql-indent" value="+1"></button>
+            </span>
+            <span class="ql-formats">
+                <button class="ql-direction" value="rtl"></button>
+                <select class="ql-align"></select>
+            </span>
+            <span class="ql-formats">
+                <button class="ql-clean"></button>
+            </span>
+        </div>
+
+        <div id="editor"></div>
+
+    </div>
+
+
+
+    <hr style="margin-top:10rem;border-top:0rem;border-color:white;">
+
+    <button class="btn_test" id="submitBtn">Submit JSON Data</button>
+    <button class="btn_test" id="submitBtn4RequestSuggestion">1. submitBtn4RequestSuggestion: 加载响应(按下后等待2秒)</button>
+    <button class="btn_test" id="submitBtn4InsertSuggestion">2. submitBtn4InsertSuggestion: 显示填充建议</button>
+    <button class="btn_test" id="submitBtn4ConfirmSuggestion">3. submitBtn4ConfirmSuggestion: 采取建议</button>
+    <button class="btn_test" id="submitBtn4DismissSuggestion">4. submitBtn4DismissSuggestion: 放弃建议</button>
+
+
+    <style>
+
+        .head1 {
+            margin-left:1.5rem;
+            padding-top: 0.5rem;
+            font-size: 2rem;
+        }
+
+        .plain_text {
+            margin-left:1.5rem;
+            padding-top: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .editor_zoon {
+            margin-left:1.5rem;
+            margin-right:1.5rem;
+            padding-top: 0.5rem;
+        }
+
+        .btn_test {
+            display: flex;
+            flex-direction: column;
+            margin-left:1.5rem;
+            margin-right:1.5rem;
+            padding-top: 0.5rem;
+            border: 1px solid #ccc;
+            background-color: white;
+        }
+
+
+    </style>
+</div>
+
+<div class="response_section">
+    <p class="head1"> · Status</p>
+
+    <div id="response_section" >
+    <p class="plain_text"> · Connecting to the Backend Server - Success!</p>
+    <p class="plain_text"> · Connecting to Baidu Wenxin Server - Success!</p>
+    <p class="plain_text"> · AI Texting Service - Ready ... </p>
+</div>
+
+    <style>
+        .response_section {
+            height: 100%;
+            margin-left: 3rem;
+        }
+
+    </style>
+
+</div>
+
+
+
+</section>
+
+<script src="{% static 'write_note.js' %}"></script>
+
+    
+
+
+
+
+{% endblock %}
